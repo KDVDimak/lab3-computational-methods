@@ -9,12 +9,15 @@ getcontext().prec = 30
 def task1():
     print("=== Завдання 1 ===")
 
+    # Початкові дані
     a, Da = 16.5, 0.05
     b, Db = 4.12, 0.005
     c, Dc = 0.198, 0.0005
 
+    # Обчислення функції
     f = (a * c) / (a - b**2)
 
+    # Похибка за правилами арифметичних операцій
     rel_ac = Da / a + Dc / c
     delta_ac = abs(a * c) * rel_ac
 
@@ -25,12 +28,17 @@ def task1():
     rel_f = rel_ac + rel_d
     df_rules = abs(f) * rel_f
 
+    # Похибка за загальною формулою
     df_da = -(c * b**2) / (a - b**2) ** 2
     df_db = (2 * a * b * c) / (a - b**2) ** 2
     df_dc = a / (a - b**2)
 
     df_formula = abs(df_da) * Da + abs(df_db) * Db + abs(df_dc) * Dc
 
+    # Виведення результатів
+    print(f"a = {a}, Δa = {Da}")
+    print(f"b = {b}, Δb = {Db}")
+    print(f"c = {c}, Δc = {Dc}")
     print(f"f = {f:.5f}")
     print(f"Δf (за правилами) ≈ {df_rules:.3f}")
     print(f"Δf (за формулою) ≈ {df_formula:.3f}")
@@ -51,8 +59,17 @@ def task2():
     abs2 = abs(true2 - approx2)
     rel2 = abs2 / true2 * 100
 
-    print(f"7/22 відносна похибка = {rel1:.4f}%")
-    print(f"sqrt(13) відносна похибка = {rel2:.4f}%")
+    print(f"7/22: точне = {true1}")
+    print(f"7/22: наближене = {approx1}")
+    print(f"Абсолютна похибка = {abs1}")
+    print(f"Відносна похибка = {rel1:.4f}%")
+    print()
+
+    print(f"sqrt(13): точне = {true2}")
+    print(f"sqrt(13): наближене = {approx2}")
+    print(f"Абсолютна похибка = {abs2}")
+    print(f"Відносна похибка = {rel2:.4f}%")
+    print()
 
     if rel1 < rel2:
         print("Точніша рівність: 7/22 ≈ 0.318")
